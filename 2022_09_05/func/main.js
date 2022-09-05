@@ -1,4 +1,54 @@
 "use strict";
+// const myFunc = (type, arr) => {
+//   let result = arr[0];
+//   switch (type) {
+//     case "min":
+//       arr.map((ele) => {
+//         result < ele ? null : (result = ele);
+//       });
+//       break;
+//     case "max":
+//       for (let i = 1; i < arr.length; i++) {
+//         result > arr[i] ? null : (result = arr[i]);
+//       }
+//       break;
+//     default:
+//       console.log("잘못된 입력입니다.");
+//       return;
+//   }
+//   return result;
+// };
+
+// const inputArr = [10, 20, 30, 40, 50];
+
+// console.log(myFunc("min", inputArr));
+// console.log(myFunc("max", inputArr));
+
+// const 알바생 = (name, 시급, 근무시간) => {
+//   if (name === "" || name === undefined) {
+//     // equal !name
+//     console.log("name Error!");
+//     return;
+//   }
+
+//   if (undefined === 시급) {
+//     console.log("시급을 입력하세요");
+//   }
+
+//     if (시급 === undefined || typeof 시급 !== "number" || 9620 > 시급) {
+//       console.log("Value Error!");
+//       return;
+//     }
+
+//   console.log(
+//     `name : ${name} price : ${시급.toLocaleString()} W.H : ${근무시간}`
+//   );
+// };
+
+// 알바생("홍길동", 9620, 12);
+// 알바생("홍길동", 9619, 12);
+// 알바생("김이박", 10000, 3);
+// 알바생("ㅇㅇㅇ");
 
 // object
 
