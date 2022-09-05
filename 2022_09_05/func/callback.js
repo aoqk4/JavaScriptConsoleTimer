@@ -1,5 +1,45 @@
 "use strict";
 
+function number(num) {
+  if (0 > num) {
+    throw "a";
+  } else if (100 < num) {
+    throw { name: "Er", message: "plz press Exit" };
+  }
+  return 0;
+}
+
+try {
+  console.log(number(100));
+  console.log(number(101));
+} catch (err) {
+  console.log(JSON.stringify(err));
+  console.log(err.name, err.message);
+}
+console.log(number(11111));
+
+// const val = 100;
+// try {
+//   val = 200;
+// } catch (err) {
+//   console.log(err);
+// }
+
+// const arr = [2, 4, 6, 8, 10];
+// const sum = (arr) => {
+//   let total = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     total += arr[i];
+//   }
+//   return total;
+// };
+
+// console.log(sum(arr));
+
+// const sumWithReduce = arr.reduce((prev, cur) => prev + cur, 0);
+
+// console.log(sumWithReduce);
+
 // const arr = [
 //   "강석원",
 //   "박종훈",
