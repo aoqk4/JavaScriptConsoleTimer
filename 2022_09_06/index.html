@@ -8,4 +8,30 @@
   </body>
 </html>
 
-<script <script type="module" src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+<script>
+  const product3 = [
+    {
+      name: "a",
+      price: 30000,
+      weight: 50,
+    },
+    {
+      name: "b",
+      price: 10000000,
+      weight: 150,
+    },
+    {
+      name: "c",
+      price: 100000,
+      weight: 250,
+    },
+  ];
+  const result = _.sortBy(product3, ["price"]).reverse();
+  const result2 = _.orderBy(product3, ["price", "weight"], ["asc", "desc"]);
+
+  console.log(JSON.stringify(result2, null, 4));
+</script>
+
+<!-- <script src="app.js"></script> -->

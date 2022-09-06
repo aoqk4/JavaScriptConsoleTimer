@@ -161,20 +161,33 @@ const product2 = {
 
 // console.log(product2);
 
-const product3 = {};
+const product3 = [
+  {
+    name: "a",
+    price: 30000,
+  },
+  {
+    name: "b",
+    price: 10000000,
+  },
+  {
+    name: "c",
+    price: 100000,
+  },
+];
 
-const months = ["!", "jan", "fav"];
+// const months = ["!", "jan", "fav"];
 
-const sortResult = months.sort((num1, num2) => {
-  let result;
-  num1.length > num2.length ? (result = -1) : (result = 1);
-  return result;
-});
+// const sortResult = months.sort((num1, num2) => {
+//   let result;
+//   num1.length < num2.length ? (result = -1) : (result = 1);
+//   return result;
+// });
 
-const sortResult3 = product3.sort((num1, num2) => {
-  let result;
-  num1.length > num2.length ? (result = -1) : (result = 1);
-  return result;
-});
+// const sortResult3 = product3.sort((num1, num2) => {
+//   let result;
+//   num1.length > num2.length ? (result = -1) : (result = 1);
+//   return result;
+// });
 
-console.log(sortResult3);
+// console.log(sortResult3);
