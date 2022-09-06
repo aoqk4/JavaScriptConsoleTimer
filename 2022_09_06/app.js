@@ -53,6 +53,35 @@ const product2 = {
   //   },
 };
 
+// const arr = [10, 20, 30, 40, 50];
+
+// console.log(Math.abs(-100));
+
+// console.log(Math.round(Math.ransdom() * 100));s
+
+// console.log(Math.max(10, 20, 30, 40, 50));
+// console.log(Math.min(10, 20, 30, 40, 50));
+
+// console.log(Math.max(...arr));
+
+// String.prototype.toPrint = function () {
+//   console.log(`[2022-09-06]` + this.valueOf());
+// };
+
+// "dd".toPrint();
+
+// console.log(typeof product2.상품상태);
+
+// product2.상품상태.toPrint();
+
+// product2.옵션명[0].toPrint();
+
+// product2.옵션명[0].toString();
+
+// console.log(["a", "b", "c"].toString());
+
+// console.log((1011).toString());
+
 // const str = "           동해물과 백두산이 마르고 닳도록            ";
 
 // console.log(str);
@@ -131,3 +160,21 @@ const product2 = {
 // console.log(typeof console);
 
 // console.log(product2);
+
+const product3 = {};
+
+const months = ["!", "jan", "fav"];
+
+const sortResult = months.sort((num1, num2) => {
+  let result;
+  num1.length > num2.length ? (result = -1) : (result = 1);
+  return result;
+});
+
+const sortResult3 = product3.sort((num1, num2) => {
+  let result;
+  num1.length > num2.length ? (result = -1) : (result = 1);
+  return result;
+});
+
+console.log(sortResult3);
