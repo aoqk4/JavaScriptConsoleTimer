@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   const imgs = document.querySelectorAll(".cover");
+      //   let flag = false;
+      //   let def = 100;
+
+      //   const clickMotion = () => {
+      //     if (flag == false) {
+      //       flag = true;
+      //       setInterval(() => {
+      //         imgs.forEach((ele, idx) => {
+      //           ele.setAttribute(
+      //             "src",
+      //             `http://placekitten.com/${def * idx}/${def * idx}`
+      //           );
+      //         });
+      //       }, 1000);
+      //     }
+      //   };
+      // });
+
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   let styling = document.querySelector(".styling");
+      //   styling.style.backgroundColor = `red`;
+      //   const newTag = document.createElement("div");
+      //   document.body.appendChild(newTag);
+      // });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // const one = document.querySelector("#one");
+        // const two = document.querySelector("#two");
+        // const three = document.querySelector("#three");
+        // const forDebug = document.querySelector("#debug");
+        // one.addEventListener("click", (event) => {
+        //   console.log("첫번째 클릭");
+        //   forDebug.textContent = "첫번째 클릭";
+        // });
+        // two.addEventListener("click", (event) => {
+        //   console.log("두번째 클릭");
+        //   forDebug.textContent = "두번째 클릭";
+        // });
+        // three.addEventListener("click", (event) => {
+        //   console.log("세번째 클릭");
+        //   forDebug.textContent = "세번째 클릭";
+        // });
+        // const clickEvent = (wantid) => {
+        //   console.log(`Clicked! id = ${wantid}`);
+        //   forDebug.textContent = `${wantid} Click`;
+        // };
+        // const changeText = (wantid) => {
+        //   const wantChange = document.querySelector(`#${wantid}`);
+        //   wantChange.addEventListener("click", clickEvent(wantid));
+        // };
+        // changeText("one");
+        // changeText("two");
+        // changeText("three");
+        // one.removeEventListener("click", clickEvent);
+        // const wantDel = document.querySelector("#two");
+        // const wantDelPar = wantDel.parentNode;
+        // console.log(wantDelPar);
+        // wantDelPar.removeChild(wantDel);
+        // const divA = document.querySelector("#first");
+        // const divB = document.querySelector("#second");
+        // const h1 = document.createElement("h1");
+        // h1.textContent = "이동하는 태그";
+        // h1.style.backgroundColor = "gray";
+        // const toFirst = () => {
+        //   divA.appendChild(h1);
+        //   setTimeout(toSecond, 1000);
+        // };
+        // const toSecond = () => {
+        //   divB.appendChild(h1);
+        //   setTimeout(toFirst, 10000);
+        // };
+        // let changeBtn = document.querySelector(".changebtn");
+        // changeBtn.addEventListener("click", (event) => {
+        //   if (event.button == 0) {
+        //     h1.style.backgroundColor = "blue";
+        //     h1.style.fontWeight = "bold";
+        //     toFirst();
+        //   } else {
+        //     alert("plz press left Click!");
+        //   }
+        // });
+        // const newh1 = document.createElement("h1");
+        // const newh2 = newh1;
+        // newh1.textContent = "새로운 h1";
+        // const want = document.querySelector("#two");
+        // want.appendChild(newh1);
+        // const cre = function (classId) {
+        //   const newh1 = document.createElement("h1");
+        //   const want = document.querySelector(`${classId}`);
+        //   newh1.textContent = "새로운 h1";
+        //   want.appendChild(newh1);
+        // };
+        // cre("#two");
+        // cre("body");
+        // setTimeout(() => {
+        //   const h2 = document.querySelector("h1");
+        //   h2.parentNode.removeChild(h2);
+        // }, 3000);
+        let state = true;
+        let cnt = 0;
+        const conBtn = document.querySelector("#container .conBtn");
+        const disconBtn = document.querySelector("#container .disconBtn");
+        const stateMsg = document.querySelector("#container .state");
+        const cntBtn = document.querySelector("#container .cntBtn");
+        const cntText = document.querySelector(".cntText");
+
+        const clickBtn = () => {
+          if (state === true) {
+            cnt++;
+            cntText.textContent = cnt;
+          }
+        };
+
+        conBtn.addEventListener("click", (event) => {
+          cntBtn.addEventListener("click", clickBtn);
+          stateMsg.textContent = "연결됨";
+          state = true;
+        });
+
+        disconBtn.addEventListener("click", (event) => {
+          cntBtn.removeEventListener("click", clickBtn);
+          stateMsg.textContent = "연결안됨";
+          state = false;
+        });
+      });
+    </script>
+    <style>
+      .cntBtn {
+        display: inline-block;
+        color: #444;
+        border: 1px solid #ccc;
+        background: #ababab;
+        box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        padding: 2.5px 7px;
+      }
+      .cntBtn:hover {
+        background-color: #1aaaaa;
+      }
+      .conBtn {
+        color: blue;
+      }
+      .disconBtn {
+        color: red;
+      }
+      p {
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="cntBtn">click</div>
+      <div>클릭횟수 : <span class="cntText">0</span></div>
+      <button class="conBtn">이벤트 연결</button>
+      <button class="disconBtn">이벤트 삭제</button>
+      <p>이벤트 연결 상태 : <span class="state">등록됨</span></p>
+    </div>
+    <!-- <div class="container">
+      <div id="one" class="myDiv">첫번째</div>
+      <div id="two" class="myDiv">두번째</div>
+      <div id="three" class="myDiv">세번째</div>
+      <div id="debug"></div>
+    </div> -->
+
+    <!-- <div id="first">
+      <h1>첫번째 div 태그 내부</h1>
+    </div>
+    <hr />
+    <div id="second">
+      <h1>두번째 div 태그 내부</h1>
+    </div> -->
+    <!-- <div><button class="changebtn">start</button></div> -->
+
+    <!-- <div class="styling">ABC</div> -->
+
+    <!-- <img src="" alt="" class="cover" />
+    <img src="" alt="" class="cover" />
+    <img src="" alt="" class="cover" />
+    <img src="" alt="" class="cover" />
+    <img src="" alt="" class="cover" /> -->
+
+    <!-- <button onclick="clickMotion()">start</button> -->
+    <!-- <div class="sunmoon asan sunMoon btn-lg btn-red">DIV태그 입니다.</div> -->
+    <!-- <div id="container">
+      <span name="first">안</span>
+      <span id="sun" name="second">녕</span>
+      <span id="moon" class="sun">하</span>
+      <span class="sun">세</span>
+      <span class="sun">요</span> -->
+    <!-- </div> -->
+  </body>
+  <script>
+    // const test = document.getElementById("moon");
+    // // console.log(test.innerText); // 현재를 잘 사용하지 않는다..
+    // console.log(test.textContent);
+
+    // const testClass = document.getElementsByClassName("sun");
+
+    // const testTag = document.getElementsByTagName("span");
+
+    // console.log(typeof testTag);
+
+    // for (let i = 0; i < testTag.length; i++) {
+    //   console.log(testTag[i].textContent);
+    // }
+
+    // const byNmame = document.getElementsByTagName("first");
+    // console.log(byNmame);
+    // try {
+    //   const tsetQuery = document.querySelector("#container #sun");
+    //   console.log(tsetQuery);
+    // } catch (err) {
+    //   console.log(`err! ${err}`);
+    // }
+    // const testQueries = document.querySelectorAll("div, span, .sun");
+
+    // console.log(testQueries);
+
+    // const divTag = document.querySelector(".sunmoon");
+    // console.log(typeof document);
+
+    // let result = 0;
+
+    // const addListen1 = document.addEventListener("mouseup", (event) => {
+    //   result++;
+    //   event.target === document ? console.log("d") : null;
+    // });
+    // const addListen2 = document.addEventListener("mousedown", (event) => {
+    //   result++;
+    //   console.log("누르다");
+    // });
+
+    // const testfunc = function (ele) {
+    //   this.handleEvent = function (event) {
+    //     switch (event.type) {
+    //       case "click":
+    //         console.log("A");
+    //         break;
+    //       case "mousedown":
+    //         console.log("B");
+    //         break;
+    //       case "mouseup":
+    //         console.log("C");
+    //     }
+    //   };
+
+    //   ele.addEventListener("click", this);
+    //   ele.addEventListener("mousedown", this);
+    //   ele.addEventListener("mouseup", this);
+    // };
+
+    // // const testDocHandling = new testfunc(document);
+
+    // testfunc(document);
+    // document.body.textContent = "";
+    // document.body.textContent += "<div>선문대학교</div>";
+    // document.body.innerHTML += "<div>선문대학교</div>";
+  </script>
+</html>
