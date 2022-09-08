@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const target = document.querySelector("#target");
+        const val = document.querySelector("#log");
+        let leing;
+        // target.addEventListener("keydown", (event) => {
+        //   console.log(target.value.length);
+        // });
+        // target.addEventListener("change", (event) => {
+        //   val.textContent = target.value.length;
+        // });
+
+        target.addEventListener("focus", () => {
+          console.log("focused!");
+          if (null !== leing) {
+            leing = setInterval(() => {
+              let len = target.value;
+              len = len.replace(/\s/g, "");
+              let test = len.length;
+              val.textContent = test;
+            }, 20);
+          }
+        });
+        target.addEventListener("blur", () => {
+          if (leing) {
+            clearInterval(leing);
+          }
+
+          console.log("blured");
+        });
+        // setInterval(() => {
+        //   console.log(target.value.length);
+        // }, 20);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>글자수 세기</h1>
+    <textarea id="target"></textarea>
+    <div id="log"></div>
+  </body>
+</html>

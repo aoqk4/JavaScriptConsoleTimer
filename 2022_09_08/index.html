@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      "use strict";
+      //   document.addEventListener("DOMContentLoaded", () => {
+      //     // console.log("로딩됨");
+
+      //     // window.onload = () => {
+      //     //   console.log("로딩됨");
+      //     // };
+
+      //     const conten = document.querySelector("#container");
+      //     // console.log(conten);
+      //     // conten.style.color = "red";
+
+      //     // conten.onclick = () => {
+      //     //   console.log("클릭됨");
+      //     // };
+      //     // conten.onclick = () => {
+      //     //   console.log("클릭됨2");
+      //     // };
+
+      //     console.dir(conten);
+
+      //     conten.addEventListener("click", () => {
+      //       console.log("click1");
+      //     });
+      //     conten.addEventListener("click", () => {
+      //       console.log("click2");
+      //     });
+      //   });
+      //   const testFn = (event) => {
+      //     console.log(event);
+      //   };
+
+      //   window.onload = () => {
+      //     console.log("loading");
+      //     console.log(document);
+      //   };
+      //   document.onreadystatechange = (event) => {
+      //     const stat = document.readyState;
+      //     console.log(stat);
+      //   };
+      //   console.log(document.readyState);
+
+      //   setInterval(() => {
+      //     document.readyState = "loading";
+      //     console.log(document.readyState);
+      //   }, 2000);
+
+      //   const btnClickHandler = (event) => {
+      //     alert(textCon.textContent);
+      //   };
+      document.addEventListener("DOMContentLoaded", () => {
+        const textCon = document.querySelector(".textCon");
+        const longinBtn = document.querySelector("#submit");
+        const passCon = document.querySelector(".passCon");
+
+        const curId = "12345";
+        const curPass = "1234";
+
+        textCon.addEventListener("change", (event) => {
+          textCon.textContent = event.target.value;
+        });
+        passCon.addEventListener("change", (event) => {
+          passCon.textContent = event.target.value;
+        });
+
+        longinBtn.addEventListener("click", () => {
+          if (textCon.textContent === "") {
+            alert("아이디를 입력하세요");
+          } else if (passCon.textContent === "") {
+            alert("비밀번호를 입력하세요");
+          } else {
+            if (
+              textCon.textContent === curId &&
+              passCon.textContent === curPass
+            ) {
+              alert("로그인 되었습니다.");
+            }
+          }
+        });
+      });
+    </script>
+    <style>
+      input {
+        display: block;
+        margin: 10px;
+      }
+      #submit {
+        margin-left: 10px;
+        width: 178px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <input class="textCon" type="text" placeholder="아이디" /> -->
+    <textarea class="textCon"></textarea>
+    <input class="passCon" type="range" placeholder="비밀번호" />
+    <button id="submit">로그인</button>
+  </body>
+</html>

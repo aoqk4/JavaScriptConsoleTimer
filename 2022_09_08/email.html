@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const email = document.querySelector(".email");
+        const submit = document.querySelector("#submit");
+        const err = document.querySelector(".error");
+
+        // submit.addEventListener("click", () => {
+        //   console.log(typeof email.value);
+        //   if (email.value.indexOf("@") !== -1) {
+        //     const check2 = email.value.indexOf("@");
+        //     let checkCom = "";
+        //     for (let i = check2 + 1; i < email.value.length; i++) {
+        //       checkCom += email.value[i];
+        //     }
+        //     if (
+        //       checkCom.indexOf(".") !== -1 &&
+        //       checkCom.indexOf(".") !== checkCom.length - 1
+        //     ) {
+        //       console.log(email.value);
+        //       alert("로그인 성공");
+        //       err.textContent = "로그인 성공";
+        //     } else {
+        //       err.textContent = "유효하지 않은 이메일";
+        //     }
+        //   } else {
+        //     err.textContent = "유효하지 않은 이메일";
+        //   }
+        // });
+
+        let emailCode =
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        submit.addEventListener("click", (event) => {
+          if (email.value.match(emailCode)) {
+            console.log("matched!");
+          } else {
+            console.log("fail to login");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <input type="text" class="email" placeholder="이메일" />
+      <button id="submit">로그인</button>
+    </div>
+    <div><span class="error">오류메시지</span></div>
+  </body>
+</html>
