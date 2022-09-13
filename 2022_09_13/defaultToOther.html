@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      "use strict";
+      document.addEventListener("DOMContentLoaded", () => {
+        let defaul;
+        let other;
+
+        const select = document.querySelector("select");
+        const input = document.querySelector("input");
+        const b = document.querySelector("b");
+        const btn = document.querySelector("button");
+
+        let options;
+        let idx;
+
+        const calcul = () => {
+          b.textContent = `${defaul}cm : ${(defaul * other).toFixed(2)}${
+            options[idx].textContent
+          }`;
+        };
+
+        select.addEventListener("change", () => {
+          // currnetTarget vs Target == > target 가장 아래 연관된 자식 노드만 호출, currnetTarget 부모노드에 호출..
+          options = event.currentTarget.options;
+          idx = event.currentTarget.options.selectedIndex;
+          other = Number(options[idx].value);
+        });
+
+        btn.addEventListener("click", (event) => {
+          console.log(event.target);
+          console.log(event.currentTarget);
+          calcul();
+        });
+
+        input.addEventListener("keyup", (event) => {
+          defaul = Number(event.currentTarget.value);
+        });
+      });
+    </script>
+    <style>
+      button {
+        display: block;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" /> cm =
+    <select name="" id="">
+      <option value="10">mm</option>
+      <option value="0.1">m</option>
+      <option value="0.393701">inch</option>
+    </select>
+    <button><span>변환</span></button>
+    <p><b></b></p>
+  </body>
+</html>

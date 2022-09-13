@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TO-DO</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const eleTodo = document.querySelector("#lst"); // 입력
+        const eleBtnAdd = document.querySelector("#addBtn"); //등록
+        const eleTodoList = document.querySelector("#todo"); // toDo리스트
+
+        const temp = localStorage.getItem("todoArr");
+        let todoArr = temp ? JSON.parse(temp) : [];
+
+        function saveTodo() {
+          localStorage.setItem("todoArr", JSON.stringify(todoArr));
+        }
+
+        eleBtnAdd.addEventListener("click", (event) => {
+          const todoStr1 = eleTodo.value.trim();
+
+          if (!todoStr1) return;
+
+          todo.todoStr = todoStr1;
+          checked = false;
+
+          todoArr.push({ todoStr: todoStr1, checked: false, ts: Date.now() });
+
+          eleTodo.value = "";
+
+          randerTodo();
+          saveTodo();
+
+          console.log("등록됨");
+        });
+
+        function randerTodo() {
+          eleTodoList.innerHTML = "";
+
+          todoArr.forEach((ele) => {
+            const div = document.createElement("div");
+            const checkbox = document.createElement("input");
+            const span = document.createElement("span");
+            const btn = document.createElement("button");
+
+            div.appendChild(checkbox);
+            div.appendChild(span);
+            div.appendChild(btn);
+
+            checkbox.type = "checkbox";
+            checkbox.checked = ele.checked;
+
+            btn.textContent = "삭제";
+            btn.setAttribute("data-ts", ele.ts);
+
+            span.textContent = ele.todoStr;
+
+            eleTodoList.appendChild(div);
+
+            checkbox.addEventListener("change", (event) => {
+              event.currentTarget.checked
+                ? (span.style.textDecoration = "line-through")
+                : (span.style.textDecoration = "");
+            });
+
+            btn.addEventListener("click", (event) => {
+              // const tar = event.currentTarget.parentNode;
+              // console.log(tar);
+              // eleTodoList.removeChild(tar);
+              // const _span =
+              //   event.currentTarget.parentNode.querySelector("span");
+
+              // const tempArr = todoArr.filter((ele) => {
+              //   if (ele.todoStr === _span.textContent) {
+              //     return false;
+              //   } else {
+              //     return true;
+              //   }
+              // });
+              // console.log(tempArr);
+
+              const ts = event.currentTarget.dataset.ts;
+
+              todoArr = todoArr.filter((ele) => {
+                console.log(ele.ts);
+                if (ele.ts.toString() === ts.toString()) {
+                  return false;
+                } else {
+                  return true;
+                }
+              });
+              randerTodo();
+              saveTodo();
+
+              console.log(todoArr);
+            });
+
+            if (true === ele.checked) {
+              span.style.textDecoration = "line-through";
+            } else {
+              span.style.textDecoration = "";
+            }
+          });
+        }
+        randerTodo();
+        saveTodo();
+        // localStorage.setItem("todoArr", JSON.stringify(todoArr));
+        // console.log(todoArr);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>할일 목록</h1>
+    <input id="lst" />
+    <button id="addBtn">등록</button>
+    <div id="todo">
+      <div>
+        <input type="checkbox" />
+        <span>1</span>
+        <button>삭제</button>
+      </div>
+      <div>
+        <input type="checkbox" />
+        <span>2</span>
+        <button>삭제</button>
+      </div>
+      <div>
+        <input type="checkbox" />
+        <span>3</span>
+        <button>삭제</button>
+      </div>
+      <div>
+        <input type="checkbox" />
+        <span>4</span>
+        <button>삭제</button>
+      </div>
+    </div>
+  </body>
+</html>

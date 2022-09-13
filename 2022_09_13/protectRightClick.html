@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // const imgs = document.querySelectorAll("img");
+        // imgs.forEach((ele) => {
+        //   ele.addEventListener("contextmenu", (event) => {
+        //     event.preventDefault();
+        //   });
+        // });
+
+        let status = false;
+
+        const checkbox = document.querySelector("input");
+        checkbox.addEventListener("change", (event) => {
+          status = event.currentTarget.checked;
+          console.log(status);
+        });
+
+        const link = document.querySelector("a");
+        link.addEventListener("click", (event) => {
+          if (!status) {
+            event.preventDefault();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- <img src="https://placekitten.com/300/300" alt="" /> -->
+
+    <input type="checkbox" />
+    <span> 링크 활성화 </span>
+    <br />
+    <a href="http://hanbit.co.kr">한빛미디어</a>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (eve) => {
+        const output = document.querySelector("#output");
+        const radios = document.querySelectorAll("[name=pet]");
+
+        radios.forEach((ele) => {
+          ele.addEventListener("change", (event) => {
+            const current = event.currentTarget;
+
+            if (current.checked) {
+              output.textContent = `${current.value}`;
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="radio" name="pet" value="강이지" />
+    <span>강아지</span>
+    <input type="radio" name="pet" value="고양이" />
+    <span>고양이</span>
+    <input type="radio" name="pet" value="햄스터" />
+    <span>햄스터</span>
+    <input type="radio" name="pet" value="기타" />
+    <span>기타</span>
+    <hr />
+    <h3 id="output"></h3>
+  </body>
+</html>
