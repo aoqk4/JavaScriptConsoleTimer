@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // 1. 입력 눌렀을 때 등록
+        eleAddBtn = document.querySelector("#addBtn");
+        eleTodo = document.querySelector("#todo");
+        eleTodoDiv = document.querySelector("#todoList");
+
+        const temp = JSON.parse(localStorage.getItem("setTodo"));
+
+        let savedTodo = temp ? temp : [];
+
+        function accountLoc() {
+          localStorage.setItem("setTodo", JSON.stringify(savedTodo));
+        }
+
+        eleAddBtn.addEventListener("click", (event) => {
+          if (eleTodo.value === "") {
+            alert("내용을 입력하여 주세요.");
+          } else {
+            savedTodo.push({
+              todoText: eleTodo.value,
+              checked: false,
+              timeId: Date.now(),
+            });
+            accountLoc();
+            showSavedTodo();
+          }
+          eleTodo.value = "";
+        });
+        function showSavedTodo() {
+          while (eleTodoDiv.hasChildNodes()) {
+            eleTodoDiv.removeChild(eleTodoDiv.firstChild);
+          }
+
+          if (!savedTodo) {
+            return;
+          } else {
+            savedTodo.forEach((ele) => {
+              const div = document.createElement("div");
+
+              const checkBox = document.createElement("input");
+              checkBox.type = "checkbox";
+              checkBox.checked = ele.checked;
+
+              const span = document.createElement("span");
+              span.textContent = ele.todoText;
+
+              const btn = document.createElement("button");
+              btn.textContent = "삭제";
+
+              div.appendChild(checkBox);
+              div.appendChild(span);
+              div.appendChild(btn);
+
+              eleTodoDiv.appendChild(div);
+
+              div.setAttribute("data-ts", ele.timeId);
+
+              if (ele.checked === true) {
+                span.style.textDecoration = "line-through";
+              }
+
+              checkBox.addEventListener("change", (event) => {
+                // 1. 이벤트가 바뀐다면?
+                ele.checked = event.currentTarget.checked;
+
+                span.style.textDecoration = ele.checked ? "line-through" : "";
+
+                accountLoc();
+              });
+              btn.addEventListener("click", (event) => {
+                const targetTs = event.target.parentNode.dataset.ts;
+                const deletedArr = savedTodo.filter((elem) => {
+                  return elem.timeId.toString() !== targetTs;
+                });
+
+                savedTodo = deletedArr;
+                accountLoc();
+                showSavedTodo();
+              });
+            });
+          }
+        }
+
+        showSavedTodo();
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>ToDo List</h1>
+      <input type="text" id="todo" />
+      <button id="addBtn">입력</button>
+    </div>
+    <div id="todoList"></div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StopWatch</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const start = document.querySelector("#start");
+        const stop = document.querySelector("#stop");
+        const reset = document.querySelector("#reset");
+        const ms = document.querySelector("#ms");
+        const sec = document.querySelector("#sec");
+        const min = document.querySelector("#min");
+        const save = document.querySelector("#save");
+        const record = document.querySelector("#record");
+
+        let timeId;
+
+        let cnt = 0;
+        let viewSec = 0;
+        let viewMin = 0;
+
+        let recordObj = [];
+
+        let savedRec = JSON.parse(localStorage.getItem("timeRec"));
+
+        if (savedRec) {
+          savedRec.forEach((ele) => {
+            const savRec = document.createElement("p");
+            savRec.textContent =
+              ele.min.toString().padStart(2, "0") +
+              " : " +
+              ele.sec.toString().padStart(2, "0") +
+              " : " +
+              ele.ms.toString().padStart(2, "0");
+            record.appendChild(savRec);
+          });
+        }
+
+        start.addEventListener("click", (event) => {
+          timeId = setInterval(() => {
+            ms.textContent = cnt.toString().padStart(2, "0");
+            cnt++;
+
+            if (cnt === 100) {
+              cnt = 0;
+              ms.textContent = cnt.toString().padStart(2, "0");
+              viewSec++;
+              sec.textContent = viewSec.toString().padStart(2, "0");
+            }
+
+            if (viewSec > 59) {
+              viewSec = 0;
+              sec.textContent = viewSec.toString().padStart(2, "0");
+              viewMin++;
+              min.textContent = viewMin.toString().padStart(2, "0");
+            }
+          }, 10);
+        });
+
+        stop.addEventListener("click", (event) => {
+          clearInterval(timeId);
+        });
+
+        reset.addEventListener("click", (event) => {
+          clearInterval(timeId);
+
+          let cnt = 0;
+          let viewSec = 0;
+          let viewMin = 0;
+
+          ms.textContent = cnt.toString().padStart(2, "0");
+          sec.textContent = viewSec.toString().padStart(2, "0");
+          min.textContent = viewMin.toString().padStart(2, "0");
+
+          record.textContent = "";
+
+          localStorage.clear();
+        });
+
+        save.addEventListener("click", (event) => {
+          const rec = document.createElement("p");
+          rec.textContent =
+            viewMin.toString().padStart(2, "0") +
+            " : " +
+            viewSec.toString().padStart(2, "0") +
+            " : " +
+            cnt.toString().padStart(2, "0");
+
+          record.appendChild(rec);
+
+          recordObj.push({
+            ms: cnt,
+            sec: viewSec,
+            min: viewMin,
+          });
+          localStorage.setItem("timeRec", JSON.stringify(recordObj));
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <p>
+        <span id="min">00</span><span> :</span> <span id="sec">00</span
+        ><span> :</span>
+        <span id="ms">00</span>
+      </p>
+      <button id="start" value="start">Start</button>
+      <button id="stop" value="stop">Stop</button>
+      <button id="reset" value="reset">reset</button>
+      <button id="save" value="save">save</button>
+
+      <div id="record"></div>
+    </div>
+  </body>
+</html>

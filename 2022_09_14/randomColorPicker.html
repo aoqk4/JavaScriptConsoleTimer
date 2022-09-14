@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const h1 = document.querySelector("h1");
+
+        const body = document.body;
+
+        let ran;
+
+        ran = localStorage.getItem("Color");
+
+        document.body.style.backgroundColor = ran;
+
+        h1.textContent = ran;
+
+        const fixedColor = () => {
+          ran = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+
+          document.body.style.backgroundColor = ran;
+
+          h1.textContent = ran;
+
+          localStorage.setItem("Color", ran);
+        };
+
+        // const spaceBarKeyCode = 32;
+
+        body.addEventListener("keyup", (event) => {
+          if (event.code === "Space") {
+            fixedColor();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <style>
+      .inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+      }
+      h1 {
+        font-weight: 200;
+      }
+    </style>
+    <div class="inner"><h1></h1></div>
+  </body>
+</html>
