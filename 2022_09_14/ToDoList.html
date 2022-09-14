@@ -3,11 +3,12 @@
   <head>
     <title>Document</title>
     <script>
+      "use strict";
       document.addEventListener("DOMContentLoaded", (event) => {
         // 1. 입력 눌렀을 때 등록
-        eleAddBtn = document.querySelector("#addBtn");
-        eleTodo = document.querySelector("#todo");
-        eleTodoDiv = document.querySelector("#todoList");
+        const eleAddBtn = document.querySelector("#addBtn");
+        const eleTodo = document.querySelector("#todo");
+        const eleTodoDiv = document.querySelector("#todoList");
 
         const temp = JSON.parse(localStorage.getItem("setTodo"));
 
@@ -85,13 +86,12 @@
             });
           }
         }
-
         showSavedTodo();
       });
     </script>
   </head>
   <body>
-    <div>
+    <div calss="main">
       <h1>ToDo List</h1>
       <input type="text" id="todo" />
       <button id="addBtn">입력</button>
